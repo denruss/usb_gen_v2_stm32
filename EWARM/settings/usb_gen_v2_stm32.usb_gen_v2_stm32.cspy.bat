@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "D:\Projects\IAR\usb_gen_v2_stm32\EWARM\settings\usb_gen_v2_stm32.usb_gen_v2_stm32.general.xcl" --backend -f "D:\Projects\IAR\usb_gen_v2_stm32\EWARM\settings\usb_gen_v2_stm32.usb_gen_v2_stm32.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "C:\Projects\IAR\usb_gen_v2_stm32\EWARM\settings\usb_gen_v2_stm32.usb_gen_v2_stm32.general.xcl" --backend -f "C:\Projects\IAR\usb_gen_v2_stm32\EWARM\settings\usb_gen_v2_stm32.usb_gen_v2_stm32.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "D:\Projects\IAR\usb_gen_v2_stm32\EWARM\settings\usb_gen_v2_stm32.usb_gen_v2_stm32.general.xcl" "--debug_file=%~1" --backend -f "D:\Projects\IAR\usb_gen_v2_stm32\EWARM\settings\usb_gen_v2_stm32.usb_gen_v2_stm32.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "C:\Projects\IAR\usb_gen_v2_stm32\EWARM\settings\usb_gen_v2_stm32.usb_gen_v2_stm32.general.xcl" "--debug_file=%~1" --backend -f "C:\Projects\IAR\usb_gen_v2_stm32\EWARM\settings\usb_gen_v2_stm32.usb_gen_v2_stm32.driver.xcl" 
 
 @echo off 
 :end

@@ -47,8 +47,8 @@
 /* USER CODE END INCLUDE */
 
 extern float freq;
-extern uint8_t att;
-extern uint8_t enable;
+extern uint32_t att;
+extern uint32_t enable;
 extern uint8_t dataToSend[CUSTOM_HID_EPOUT_SIZE];
 /** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
   * @{

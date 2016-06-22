@@ -86,13 +86,13 @@ __ALIGN_BEGIN static uint8_t CUSTOM_HID_ReportDesc_FS[USBD_CUSTOM_HID_REPORT_DES
     0x09, 0x01,                    //   USAGE (Vendor Usage 1)
     0x15, 0x00,                    //   LOGICAL_MINIMUM (0)
     0x26, 0xff, 0x00,              //   LOGICAL_MAXIMUM (255)
-    0x95, 0x06,                    // REPORT_COUNT (64)
+    0x95, 0x40,                    // REPORT_COUNT (64)
     0x75, 0x08,                    //   REPORT_SIZE (8)
     0x81, 0x02,                    //   INPUT (Data,Var,Abs)
     0x09, 0x01,                    //   USAGE (Vendor Usage 1)
     0x15, 0x00,                    // LOGICAL_MINIMUM (0)
     0x26, 0xff, 0x00,              //   LOGICAL_MAXIMUM (255)
-    0x95, 0x06,                    //   REPORT_COUNT (64)
+    0x95, 0x40,                    //   REPORT_COUNT (64)
     0x75, 0x08,                    //   REPORT_SIZE (8)
     0x91, 0x02,                    //   OUTPUT (Data,Var,Abs)
     0xc0                           //         END_COLLECTION
@@ -194,9 +194,13 @@ static int8_t CUSTOM_HID_OutEvent_FS  (uint8_t event_idx, uint8_t state)
             Led(enable);
             dataToSend[4] = dataToReceive[4];
             break;
+         case 4: // сохраняем настройки, которые при включении применяться (не зависимо от ПК)
+            WriteParam(); 
+            break;            
          default:
             break;
         }
+
   }
 
   return (0);

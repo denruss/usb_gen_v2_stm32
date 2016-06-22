@@ -12,6 +12,8 @@
 
 void Led(uint8_t);
 void Error_Handler(void);
+void WriteParam(void);
+void ReadParam(void);
 
 extern USBD_HandleTypeDef  hUsbDeviceFS;
 extern uint8_t dataToReceive[CUSTOM_HID_EPOUT_SIZE];

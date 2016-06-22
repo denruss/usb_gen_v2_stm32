@@ -187,7 +187,6 @@
           <name>CCDefines</name>
           <state>USE_HAL_DRIVER</state>
           <state>STM32F103xB</state>
-          <state>HAL_TIM_MODULE_ENABLED</state>
         </option>
         <option>
           <name>CCPreprocFile</name>

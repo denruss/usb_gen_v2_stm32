@@ -218,7 +218,13 @@ void USB_LP_CAN1_RX0_IRQHandler(void)
 void TIM3_IRQHandler(void)
 {
   HAL_TIM_IRQHandler(&TimHandle);
-  USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, dataToSend, 6);
+  
+  memcpy(&dataToSend[4], &freq, 4);
+  memcpy(&dataToSend[8], &att, 4); 
+  memcpy(&dataToSend[12], &enable, 4);  
+
+  
+  USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, dataToSend, 64);
   //Timer = 1;
 }
 
