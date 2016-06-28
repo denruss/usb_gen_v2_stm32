@@ -12,6 +12,7 @@ void InitAll(void)
   HAL_Init();
   SystemClock_Config();
   MX_GPIO_Init();
+  USB_Reconnect();
   MX_USB_DEVICE_Init();
   MX_SPI1_Init();
   MX_SPI2_Init();
@@ -165,3 +166,16 @@ void MX_TIM3_Init(void)
   
 
 }
+
+void USB_Reconnect(void)
+{
+   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_RESET);
+
+   HAL_Delay(100);
+  
+   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
+   
+   HAL_Delay(100);
+}
+
+

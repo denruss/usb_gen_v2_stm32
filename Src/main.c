@@ -4,16 +4,17 @@
 float freq = 2000.0; //действующие значения от 25 до 6000 МГц
 uint32_t att = 0; //действующие значения от 0 до 63, 63 - максимальный сигнал, 0- минимальный, шаг 0,5 дБ
 uint32_t enable = 0; //
+uint8_t mode = 0; // режим работы, 0 - ГСС, 1 - ГКЧ, 2 - 
 
-
-
-uint8_t dataToSend[64] = {0};
+uint8_t dataToSend[64] = {0}; // Массив байт, для отправки ПК
 
 int main(void)
 {
-
+   
   /* Configure the system clock and initialize all configured peripherals */
   InitAll();
+
+
   
   uint32_t data = 0;
   
@@ -59,6 +60,7 @@ void Led(uint8_t enable)
 	}
 }
 
+
 void WriteParam(void)
 {
   HAL_StatusTypeDef	flash_ok = HAL_ERROR;
@@ -103,7 +105,7 @@ void ReadParam(void)
   
   // защита
   if (enable > 1) { enable = 0; }
-  if (freq < 25 || freq > 6000) { enable = 0; freq = 1000; }
+  if (freq < 25 || freq > 6000) { enable = 0; freq = 2000; }
   if (att > 63) {att = 0; enable = 0; freq = 2000; }  
   
 }

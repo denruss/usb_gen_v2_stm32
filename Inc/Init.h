@@ -15,5 +15,6 @@ void MX_GPIO_Init(void);
 void MX_SPI1_Init(void);
 void MX_SPI2_Init(void);
 void MX_TIM3_Init(void);
+void USB_Reconnect(void);
 
 #endif
