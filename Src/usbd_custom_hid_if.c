@@ -197,6 +197,13 @@ static int8_t CUSTOM_HID_OutEvent_FS  (uint8_t event_idx, uint8_t state)
          case 4: // сохраняем настройки, которые при включении применяться (не зависимо от ПК)
             WriteParam(); 
             break;            
+
+        
+        
+         case 255: // обновление
+            HAL_RTCEx_BKUPWrite(&RtcHandle, RTC_BKP_DR1, 1);
+            while(1) {} //ждём, когда сработает сторожевой таймер и перезагрузит
+            break;
          default:
             break;
         }

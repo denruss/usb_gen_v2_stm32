@@ -16,5 +16,7 @@ void MX_SPI1_Init(void);
 void MX_SPI2_Init(void);
 void MX_TIM3_Init(void);
 void USB_Reconnect(void);
+void RTC_Config(void);
+static void MX_IWDG_Init(void);
 
 #endif

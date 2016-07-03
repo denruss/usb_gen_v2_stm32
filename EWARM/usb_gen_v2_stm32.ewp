@@ -605,7 +605,7 @@
         <option>
           <name>OOCOutputFormat</name>
           <version>3</version>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>OCOutputOverride</name>
@@ -613,7 +613,7 @@
         </option>
         <option>
           <name>OOCOutputFile</name>
-          <state>usb_gen_v2_stm32.srec</state>
+          <state>usb_gen_v2_stm32.hex</state>
         </option>
         <option>
           <name>OOCCommandLineProducer</name>
@@ -621,7 +621,7 @@
         </option>
         <option>
           <name>OOCObjCopyEnable</name>
-          <state>0</state>
+          <state>1</state>
         </option>
       </data>
     </settings>
@@ -732,7 +732,7 @@
         </option>
         <option>
           <name>IlinkIcfFile</name>
-          <state>$PROJ_DIR$/stm32f103xb_flash.icf</state>
+          <state>$PROJ_DIR$\usb_gen_v2_stm32_my.icf</state>
         </option>
         <option>
           <name>IlinkIcfFileSlave</name>
@@ -796,7 +796,7 @@
         </option>
         <option>
           <name>DoFill</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>FillerByte</name>
@@ -804,20 +804,20 @@
         </option>
         <option>
           <name>FillerStart</name>
-          <state>0x0</state>
+          <state>0x08006000</state>
         </option>
         <option>
           <name>FillerEnd</name>
-          <state>0x0</state>
+          <state>0x0800FBFC</state>
         </option>
         <option>
           <name>CrcSize</name>
           <version>0</version>
-          <state>1</state>
+          <state>2</state>
         </option>
         <option>
           <name>CrcAlign</name>
-          <state>1</state>
+          <state>4</state>
         </option>
         <option>
           <name>CrcPoly</name>
@@ -835,11 +835,11 @@
         </option>
         <option>
           <name>CrcInitialValue</name>
-          <state>0x0</state>
+          <state>0xFFFFFFFF</state>
         </option>
         <option>
           <name>DoCrc</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>IlinkBE8Slave</name>
@@ -879,7 +879,7 @@
         </option>
         <option>
           <name>IlinkCrcUseAsInput</name>
-          <state>1</state>
+          <state>0</state>
         </option>
         <option>
           <name>IlinkOptInline</name>
@@ -924,12 +924,12 @@
         <option>
           <name>CrcAlgorithm</name>
           <version>0</version>
-          <state>1</state>
+          <state>2</state>
         </option>
         <option>
           <name>CrcUnitSize</name>
           <version>0</version>
-          <state>0</state>
+          <state>2</state>
         </option>
         <option>
           <name>IlinkThreadsSlave</name>

@@ -4,6 +4,8 @@
 SPI_HandleTypeDef hspi1;
 SPI_HandleTypeDef hspi2;
 TIM_HandleTypeDef TimHandle;
+RTC_HandleTypeDef RtcHandle;
+IWDG_HandleTypeDef hiwdg;
 
 uint32_t uwPrescalerValue = 0;
 
@@ -12,12 +14,15 @@ void InitAll(void)
   HAL_Init();
   SystemClock_Config();
   MX_GPIO_Init();
+  MX_IWDG_Init();
   USB_Reconnect();
   MX_USB_DEVICE_Init();
   MX_SPI1_Init();
   MX_SPI2_Init();
   MX_TIM3_Init();
+  RTC_Config();
 
+  HAL_IWDG_Start(&hiwdg);
 }
 
 /** System Clock Configuration
@@ -178,4 +183,35 @@ void USB_Reconnect(void)
    HAL_Delay(100);
 }
 
+void RTC_Config(void)
+{
+  /*##-1- Configure the RTC peripheral #######################################*/
+  /* Configure RTC prescaler and RTC data registers */
+  /* RTC configured as follow:
+      - Asynch Prediv  = Calculated automatically by HAL (based on LSI at 40kHz) */
+  RtcHandle.Instance = RTC; 
+  RtcHandle.Init.AsynchPrediv = RTC_AUTO_1_SECOND;
+  
+  HAL_RTC_Init(&RtcHandle);
+  
+  __HAL_RCC_PWR_CLK_ENABLE();
+  __HAL_RCC_BKP_CLK_ENABLE();
+  HAL_PWR_EnableBkUpAccess();  
+  
+}  
+
+/* IWDG init function */
+static void MX_IWDG_Init(void)
+{
+
+  hiwdg.Instance = IWDG;
+  hiwdg.Init.Prescaler = IWDG_PRESCALER_32;
+  hiwdg.Init.Reload = 1000;
+  if (HAL_IWDG_Init(&hiwdg) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  
+
+}
 

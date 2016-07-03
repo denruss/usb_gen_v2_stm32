@@ -49,7 +49,13 @@
 
 extern uint8_t dataToSend[CUSTOM_HID_EPOUT_SIZE];
 extern USBD_HandleTypeDef  hUsbDeviceFS;
-  
+extern uint8_t  version;
+extern uint8_t  subversion;
+extern IWDG_HandleTypeDef hiwdg;
+extern float XTAL;
+extern float R;
+
+
 void NMI_Handler(void);
 void HardFault_Handler(void);
 void MemManage_Handler(void);

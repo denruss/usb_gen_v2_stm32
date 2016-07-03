@@ -50,6 +50,9 @@ extern float freq;
 extern uint32_t att;
 extern uint32_t enable;
 extern uint8_t dataToSend[CUSTOM_HID_EPOUT_SIZE];
+extern RTC_HandleTypeDef RtcHandle;
+
+
 /** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
   * @{
   */

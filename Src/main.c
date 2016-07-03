@@ -1,15 +1,29 @@
 
 #include "main.h"
 
+uint8_t version = 1; 
+uint8_t subversion = 7; 
+
+
 float freq = 2000.0; //действующие значения от 25 до 6000 МГц
 uint32_t att = 0; //действующие значения от 0 до 63, 63 - максимальный сигнал, 0- минимальный, шаг 0,5 дБ
 uint32_t enable = 0; //
 uint8_t mode = 0; // режим работы, 0 - ГСС, 1 - ГКЧ, 2 - 
 
+
+
 uint8_t dataToSend[64] = {0}; // Массив байт, для отправки ПК
+
+
+extern uint32_t __checksum;                                 // контрольная сумма
+#pragma section=".checksum"                                 //
 
 int main(void)
 {
+  
+  uint32_t crc = __checksum;                               // без этой строчки ошибка линкера
+  
+
    
   /* Configure the system clock and initialize all configured peripherals */
   InitAll();
@@ -40,6 +54,7 @@ int main(void)
   
   while (1)
   {
+
     
   }
 
