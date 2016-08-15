@@ -42,7 +42,7 @@
 /* External variables --------------------------------------------------------*/
 extern PCD_HandleTypeDef hpcd_USB_FS;
 extern TIM_HandleTypeDef    TimHandle;   
-uint8_t Timer;
+
 /******************************************************************************/
 /*            Cortex-M3 Processor Interruption and Exception Handlers         */ 
 /******************************************************************************/
@@ -224,16 +224,28 @@ void TIM3_IRQHandler(void)
   
   dataToSend[0] = version;
   dataToSend[1] = subversion;
+  dataToSend[2] = mode;
+
   
   memcpy(&dataToSend[4], &freq, 4);
   memcpy(&dataToSend[8], &att, 4); 
-  memcpy(&dataToSend[12], &enable, 4);  
+  //memcpy(&dataToSend[12], &enable, 4);  
+  dataToSend[12] = enable;
   memcpy(&dataToSend[16], &XTAL, 4);  
   memcpy(&dataToSend[20], &R, 4);  
-    
+  
+  
+  memcpy(&dataToSend[24], &freq_start, 4);
+  memcpy(&dataToSend[28], &freq_stop, 4);
+  memcpy(&dataToSend[32], &freq_step, 4);
+  dataToSend[36] = delay; 
+  
+  //memcpy(&dataToSend[37], &K, 4);  
+  //memcpy(&dataToSend[41], &Nint, 4);  
+  //memcpy(&dataToSend[45], &Nfract, 4);   
   
   USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, dataToSend, 64);
-  //Timer = 1;
+
 }
 
 void USBWakeUp_IRQHandler(void)

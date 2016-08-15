@@ -61,7 +61,7 @@
 #define USBD_MANUFACTURER_STRING     "denruss"
 #define USBD_PID_FS     22352
 #define USBD_PRODUCT_STRING_FS     "STM32 Custom Human interface"
-#define USBD_SERIALNUMBER_STRING_FS     "00000000001A"
+#define USBD_SERIALNUMBER_STRING_FS     "000000005443"
 #define USBD_CONFIGURATION_STRING_FS     "Custom HID Config"
 #define USBD_INTERFACE_STRING_FS     "Custom HID Interface"
 
