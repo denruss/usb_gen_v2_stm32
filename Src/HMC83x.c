@@ -4,8 +4,12 @@
 float XTAL = 25; //частота кварцевого генератора в МГц
 float R = 1; // Делитель частоты кварцевого генератора
 
+
+
 uint32_t BufferTX[1];
 uint32_t BufferRX[1];
+
+//uint32_t ;
 
 void HMC83x_write(uint32_t a, uint32_t d) 
 {	
@@ -24,10 +28,13 @@ void HMC83x_write(uint32_t a, uint32_t d)
         // convert from little endian to big endian
         BufferTX[0] = ( BufferTX[0] >> 24 ) | (( BufferTX[0] << 8) & 0x00ff0000 )| ((BufferTX[0] >> 8) & 0x0000ff00) | ( BufferTX[0] << 24)  ; 
 
-        
+
+
+
         HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
         HAL_SPI_Transmit(&hspi1, (uint8_t*)BufferTX, 4, 10);
         HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+
 
 }
 
@@ -44,9 +51,9 @@ uint32_t HMC83x_read(uint8_t adr)
 
 void SetFreq(float freq)
 {
-	int K = 1;
-	int Nint = 0;
-	int Nfract = 0;
+        int K = 1;
+        int Nint = 0;
+        int Nfract = 0; 
 
 	float freq1 = 0;
 
@@ -67,11 +74,7 @@ void SetFreq(float freq)
 
 			
 			// VCO Subsystems
-			//				   data		    addr	  id
-			HMC83x_write(5, (0x2C << 7) | (5 << 3) | 0); //  5.5
-			HMC83x_write(5, (0xC1 << 7) | (4 << 3) | 0); //  5.4
-
-			
+			//		 data	       addr	 id
 			HMC83x_write(5, (0x11 << 7) | (3 << 3) | 0); //  5.3 // 0x41 or 0x51 ???
 			if (K < 4) 
                           HMC83x_write(5, ((0x1C0 | K)  << 7) | (2 << 3) | 0); //  5.2 
@@ -80,16 +83,6 @@ void SetFreq(float freq)
 
 			HMC83x_write(5, 0); // конец записи в VCO
 
-
-			//
-			HMC83x_write(6,  0x200B4A); 
-			HMC83x_write(7,  0x00014D); 
-			HMC83x_write(8,  0xC1BEFF); 
-			HMC83x_write(9,  0x153FFF); 
-			HMC83x_write(10, 0x002046);
-			HMC83x_write(11, 0x07C061);
-			HMC83x_write(12, 0x000000);
-			HMC83x_write(15, 0x000001);
 
 
 			//
@@ -108,24 +101,10 @@ void SetFreq(float freq)
 
 
 			// VCO Subsystems
-			//				   data		    addr	  id
-			HMC83x_write(5, (0x2C << 7) | (5 << 3) | 0); //  5.5
-			HMC83x_write(5, (0xC1 << 7) | (4 << 3) | 0); //  5.4
+			//		 data	       addr	 id
 			HMC83x_write(5, (0x51 << 7) | (3 << 3) | 0); //  5.3 // 0x41 or 0x51 ???
 			HMC83x_write(5, ((0x1C0 | 1)  << 7) | (2 << 3) | 0); //  5.2 
 			HMC83x_write(5, 0); // конец записи в VCO
-
-
-			//
-			HMC83x_write(6,  0x200B4A); 
-			HMC83x_write(7,  0x00014D); 
-			HMC83x_write(8,  0xC1BEFF); 
-			HMC83x_write(9,  0x153FFF); 
-			HMC83x_write(10, 0x002046);
-			HMC83x_write(11, 0x07C061);
-			HMC83x_write(12, 0x000000);
-			HMC83x_write(15, 0x000001);
-
 
 			//
 			HMC83x_write(4, Nfract);  //FRACT
@@ -144,24 +123,10 @@ void SetFreq(float freq)
 
 
 			// VCO Subsystems
-			//				   data		    addr	  id
-			HMC83x_write(5, (0x2C << 7) | (5 << 3) | 0); //  5.5
-			HMC83x_write(5, (0xC1 << 7) | (4 << 3) | 0); //  5.4
+			//		 data	       addr	 id
 			HMC83x_write(5, (0x00 << 7) | (3 << 3) | 0); //  5.3
 			HMC83x_write(5, (0x01 << 7) | (2 << 3) | 0); //  5.2 
 			HMC83x_write(5, 0); // конец записи в VCO
-
-
-			//
-			HMC83x_write(6,  0x200B4A); 
-			HMC83x_write(7,  0x00014D); 
-			HMC83x_write(8,  0xC1BEFF); 
-			HMC83x_write(9,  0x153FFF); 
-			HMC83x_write(10, 0x002046);
-			HMC83x_write(11, 0x07C061);
-			HMC83x_write(12, 0x000000);
-			HMC83x_write(15, 0x000001);
-
 
 			//
 			HMC83x_write(4, Nfract);  //FRACT
@@ -191,5 +156,26 @@ void En(uint8_t enable)
                
 	}
 
+
+}
+
+void InitHMC83x(void)
+{
+
+  HMC83x_write(6,  0x200B4A); 
+  HMC83x_write(7,  0x00014D); 
+  HMC83x_write(8,  0xC1BEFF); 
+  HMC83x_write(9,  0x153FFF); 
+  HMC83x_write(10, 0x002046);
+  HMC83x_write(11, 0x07C061);
+  HMC83x_write(12, 0x000000);
+  HMC83x_write(15, 0x000001);
+  
+  // VCO Subsystems
+  //		 data	      addr	 id
+  HMC83x_write(5, (0x2C << 7) | (5 << 3) | 0); //  5.5
+  HMC83x_write(5, (0xC1 << 7) | (4 << 3) | 0); //  5.4
+  HMC83x_write(5, 0); // конец записи в VCO 
+  
 
 }

@@ -1003,9 +1003,6 @@
         <name>$PROJ_DIR$\..\Inc\main.h</name>
       </file>
       <file>
-        <name>$PROJ_DIR$\..\Inc\mxconstants.h</name>
-      </file>
-      <file>
         <name>$PROJ_DIR$\..\Inc\stm32f1xx_hal_conf.h</name>
       </file>
       <file>

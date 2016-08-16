@@ -182,7 +182,7 @@ static int8_t CUSTOM_HID_OutEvent_FS  (uint8_t event_idx, uint8_t state)
         {
          case 1: // установка частоты
             memcpy(&freq, &dataToReceive[1], 4);
-            SetFreq(freq);
+            new_flag = 1;
             break;
          case 2: // установка ослабления
             att = dataToReceive[4];
@@ -190,17 +190,26 @@ static int8_t CUSTOM_HID_OutEvent_FS  (uint8_t event_idx, uint8_t state)
             break;
          case 3: // включение/выключение
             enable = dataToReceive[4];
-            En(enable);
-            Led(enable);
+            new_flag = 1;
+            //En(enable);
+            //Led(enable);
             dataToSend[4] = dataToReceive[4];
             break;
          case 4: // сохраняем настройки, которые при включении применяться (не зависимо от ПК)
             WriteParam(); 
             break;            
+         case 5: // установка режима
+            mode = dataToReceive[4]; 
+            new_flag = 1;
+            break;     
+         case 6: // параметры для ГКЧ
+            memcpy(&freq_start, &dataToReceive[1], 4);
+            memcpy(&freq_stop, &dataToReceive[5], 4);
+            memcpy(&freq_step, &dataToReceive[9], 4);
+            delay = dataToReceive[13];
+            break;  
 
-        
-        
-         case 255: // обновление
+        case 255: // обновление
             HAL_RTCEx_BKUPWrite(&RtcHandle, RTC_BKP_DR1, 1);
             while(1) {} //ждём, когда сработает сторожевой таймер и перезагрузит
             break;

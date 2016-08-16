@@ -12,6 +12,7 @@ uint32_t HMC83x_wordHM(int, int);
 
 void SetFreq(float);
 void En(uint8_t);
+void InitHMC83x(void);
 
 
 extern SPI_HandleTypeDef hspi1;

@@ -44,14 +44,22 @@
 #include "HMC625.h"
 
 /* USER CODE BEGIN INCLUDE */
-/* USER CODE END INCLUDE */
 
 extern float freq;
 extern uint32_t att;
-extern uint32_t enable;
+extern uint8_t enable;
+extern uint8_t mode; 
+extern uint8_t new_flag; 
+
+extern float freq_start; 
+extern float freq_stop; 
+extern float freq_step; 
+extern uint8_t delay;
+
 extern uint8_t dataToSend[CUSTOM_HID_EPOUT_SIZE];
 extern RTC_HandleTypeDef RtcHandle;
 
+/* USER CODE END INCLUDE */
 
 /** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
   * @{
