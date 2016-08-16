@@ -1,6 +1,10 @@
 ###############################################################################
 #
+<<<<<<< HEAD
 # IAR ELF Linker V7.50.3.10732/W32 for ARM                16/Aug/2016  15:52:16
+=======
+# IAR ELF Linker V7.50.3.10732/W32 for ARM                26/Jul/2016  11:10:06
+>>>>>>> origin/master
 # Copyright 2007-2016 IAR Systems AB.
 #
 #    Output file  =  
