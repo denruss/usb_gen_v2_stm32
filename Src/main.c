@@ -72,20 +72,13 @@ int main(void)
            if (enable == 1) {
               for (float i = freq_start; i < freq_stop;  i = i + freq_step)
               {   SetFreq(i);
-<<<<<<< HEAD
                   HAL_Delay(delay);
-=======
->>>>>>> origin/master
                   do
                   {
                     data = HMC83x_read(0x12) & 2 ; 
                   }
                    while (data != 2 && new_flag == 0); // ждём Lock Detect
                    if (new_flag == 1) break;
-<<<<<<< HEAD
-=======
-                  HAL_Delay(delay);
->>>>>>> origin/master
                   
               }
            }  
@@ -102,10 +95,6 @@ int main(void)
              temp =  (float)rand();
              temp = (float)(temp / RAND_MAX) * (freq_stop - freq_start) + freq_start;
              SetFreq(temp);
-<<<<<<< HEAD
-             HAL_Delay(delay);
-=======
->>>>>>> origin/master
              do
                {
                  data = HMC83x_read(0x12) & 2 ; 
@@ -117,10 +106,6 @@ int main(void)
                 Led(enable);
                 HAL_Delay(2);
                 new_flag = 0; }   
-<<<<<<< HEAD
-=======
-             HAL_Delay(delay);
->>>>>>> origin/master
            }  
  
             break;
